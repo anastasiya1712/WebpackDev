@@ -1,28 +1,24 @@
-const path = require("path"); // для того чтобы превратить относительный путь в абсолютный, мы будем использовать пакет path
+const path = require("path");
 const HTMLWebpackPlugins = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname, "./src/index.ts"), // точка входа в наше приложение содержит абсолютный путь к index.ts
+  entry: path.resolve(__dirname, "./src/index.ts"),
   output: {
-    path: path.resolve(__dirname, "./dist"), // путь, куда будет собираться наш проект
-    filename: "main.js", // имя нашего бандла,
-    clean: true, // очистка папки перед сборкой
+    path: path.resolve(__dirname, "./dist"),
+    filename: "main.js",
+    clean: true,
   },
-  // Нужно помочь вебпаку научиться работать  с jsx- и tsx-файлами, для этого используют ts-loader
+
   module: {
     rules: [
       {
-        test: /\.[tj]sx?$/, // содержит регулярное выражение, которое содержит информацию, какие файлы должны обрабатываться этим loader'ом
+        test: /\.[tj]sx?$/,
         use: [
           {
             loader: "ts-loader",
           },
-        ], // для того чтобы ts-loader корректно отработал, нам нужен tsconfig, его можно создать вручную, а можно создать автоматически
-        /** чтобы проинициализировать его автоматически, можно установить пакет typesctipt глобально или использовать npx, 
-                    выполнив команду npx tsc --init. После создания конфига нужно включить "allowJs": true, чтобы работать не только c typescript,
-                    также меняем "jsx": "react", чтобы мы могли работать с react-компонентами, и включаем карту ресурсов "sourceMap": true,
-                    пока на этом всё, вернёмся в этот конфиг позже */
+        ],
         exclude: /node_modules/,
       },
       {
@@ -38,8 +34,9 @@ module.exports = {
                 localIdentName: "[name]__[local]__[hash:base64:5]",
                 auto: /\.module\.\w+$/i,
                 namedExport: false,
+                localIdentName: "[name]__[local]__[hash:base64:5]",
               },
-              importLoaders: 2, //Значение 2 говорит о том, что некоторые трансформации PostCSS нужно применить до css-loader.
+              importLoaders: 2,
             },
           },
           "postcss-loader",
@@ -54,7 +51,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx", ".tsx", ".ts", ".json"], // указываем файлы, с которыми будет работать webpack
+    extensions: [".js", ".jsx", ".tsx", ".ts", ".json"],
   },
   plugins: [
     new HTMLWebpackPlugins({
