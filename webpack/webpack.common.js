@@ -7,7 +7,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const production = process.env.NODE_ENV === "production";
 
 module.exports = {
-  entry: path.resolve(__dirname, "..", "./src/index.ts"),
+  entry: path.resolve(__dirname, "..", "./src/index.tsx"),
   output: {
     path: path.resolve(__dirname, "..", "./dist"),
     filename: production
