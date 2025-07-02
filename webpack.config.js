@@ -62,6 +62,11 @@ module.exports = {
           filename: "static/fonts/[hash][ext][query]",
         },
       },
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ["@svgr/webpack", "url-loader"],
+      },
     ],
   },
   resolve: {
