@@ -48,6 +48,20 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|jpg|gif|webp)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "static/images/[hash][ext][query]",
+        },
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "static/fonts/[hash][ext][query]",
+        },
+      },
     ],
   },
   resolve: {
