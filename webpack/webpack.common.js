@@ -2,6 +2,7 @@ const HTMLWebpackPlugins = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const webpack = require("webpack");
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 const production = process.env.NODE_ENV === "production";
 
@@ -85,5 +86,6 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: "development",
     }),
+    new ReactRefreshWebpackPlugin(),
   ],
 };
